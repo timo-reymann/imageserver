@@ -14,7 +14,7 @@ To customize the port (yes, more is currently not customizable) simply put a con
 
 ```json
 {
-    port: 3000
+    "port": 3000
 }
 ```
 

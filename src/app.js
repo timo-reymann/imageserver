@@ -7,6 +7,8 @@ const requestUtil = require("./util/request")
 const { ImageProcessor } = require("./processing/imageProcessor")
 const appConfig = require("./util/config")
 const path = require("path")
+const { uuid } = require("./util/uid")
+const { uniqueTmpFile } = require("./util/general")
 
 // Middleware
 const requestTimeoutMiddleware = require("./middleware/requestTimeout")
@@ -22,9 +24,17 @@ appConfig.load();
 const options = appConfig.loadOptions()
 
 app.get("/", async (request,response) => {
-    const tmpFile = path.resolve("./tmp.jpeg")
-    const sourceFile = path.resolve("./example")
+    const tmpFile = uniqueTmpFile()
     const query = requestUtil.parseQuery(request)
+    
+    let sourceFile;
+    try {
+        sourceFile = await requestUtil.download(requestUtil.getQueryParameter(query,"source"))
+    } catch(e) {
+        response.send("Invalid url")
+        response.status = 400;
+        return;
+    }
 
     let config = {};
 

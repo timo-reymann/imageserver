@@ -2,6 +2,8 @@ const url = require("url")
 const fs = require("fs")
 const os = require("os")
 const path = require("path")
+const { uniqueTmpFile }  = require("./general")
+const request = require("request")
 
 module.exports = {
     /**
@@ -33,13 +35,22 @@ module.exports = {
      * @param {String} url 
      */
     async download(url) {
-        return new Promise(resolve => {
-            let fullPath = path.join(os.tmpdir(),destination);
+        // TODO: Test
+        return new Promise((resolve, reject) => {
+            let fullPath =  uniqueTmpFile("dl_");
             const file = fs.createWriteStream(fullPath);
-            http.get(url, (response) => {
-              response.pipe(file);
-              resolve(fullPath)
-            });
+            const req = request(url);
+            req.on("error",(e) => {
+                console.error("Error loading image", e);
+                reject(e);
+            }).on("response",r => {
+                if(r.statusCode < 200 || r.statusCode >= 400) {
+                    console.error("Invalid status code", r.statusCode)
+                    reject("Invalid status code")
+                }
+            })
+            req.pipe(file)
+            req.on("end",() => resolve(fullPath))
         })
     }
 }
