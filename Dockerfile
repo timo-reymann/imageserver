@@ -4,7 +4,7 @@ RUN mkdir /app
 ADD . /app/
 WORKDIR /app
 RUN apk upgrade --update-cache --available \
-    && apk add graphicsmagick \
+    && apk add graphicsmagick gcc make python2 \
     && apk add imagemagick \
     && npm install --only=production \
     && npm install --only=production -g gm
