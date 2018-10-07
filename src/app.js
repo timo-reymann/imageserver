@@ -9,6 +9,7 @@ const appConfig = require("./util/config")
 const path = require("path")
 const { uuid } = require("./util/uid")
 const { uniqueTmpFile } = require("./util/general")
+const native = require("./util/native")
 
 // Middleware
 const requestTimeoutMiddleware = require("./middleware/requestTimeout")
@@ -31,14 +32,18 @@ app.get("/",(request, response) => {
     })
 })
 
+
 app.get("/process", async (request,response) => {
     const tmpFile = uniqueTmpFile("proc_")
     const query = requestUtil.parseQuery(request)
 
     let sourceFile;
     try {
-        sourceFile = await requestUtil.download(requestUtil.getQueryParameter(query,"source"))
+        sourceFile = await requestUtil.download(requestUtil.getQueryParameter(query,"source")) 
+        let contentType = (await native.detectMimeType(sourceFile));
+        response.setHeader("Content-Type",contentType)
     } catch(e) {
+        console.error(e);
         response.send("Invalid url")
         response.status = 400;
         return;
