@@ -30,7 +30,7 @@ npm run server
 version: '3.2'
 services:
   imageserver:
-    image: timo-reymann/image-server
+    image: timo-reymann/imageserver
     restart: always
     ports:
       - 3000:3000
