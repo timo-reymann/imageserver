@@ -12,7 +12,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "dev": "node src/app.js"
+    "dev": "node src/app.js",
+    "server": "node src/app.js"
   },
   "author": "",
   "license": "ISC"

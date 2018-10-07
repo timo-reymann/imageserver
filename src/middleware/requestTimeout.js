@@ -5,9 +5,10 @@ module.exports = {
      * Register the request timeout
      * 
      * @param {Express.Application} app 
+     * @param {Object} appConfig
      */
-    registerToApp(app) {
-        app.use(timeout(10000, { 
+    registerToApp(app, appConfig) {
+        app.use(timeout(appConfig.timeout, { 
             respond: false 
         }));
         app.use((req, res, next) => {

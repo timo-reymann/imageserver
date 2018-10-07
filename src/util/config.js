@@ -11,7 +11,8 @@ module.exports = {
      */
     get _default() {
         return {
-            port: 3000
+            port: 3000,
+            timeout: 10000
         }
     },
 

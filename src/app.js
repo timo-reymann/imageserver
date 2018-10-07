@@ -15,18 +15,26 @@ const requestTimeoutMiddleware = require("./middleware/requestTimeout")
 const requestLogMiddleware = require("./middleware/requestLog")
 const errorHandlingMiddleware = require("./middleware/errorHandler")
 
-requestTimeoutMiddleware.registerToApp(app)
-requestLogMiddleware.registerToApp(app)
-errorHandlingMiddleware.registerToApp(app)
-
 // Initialize configuration
 appConfig.load();
 const options = appConfig.loadOptions()
 
-app.get("/", async (request,response) => {
-    const tmpFile = uniqueTmpFile()
+// Register middleware
+requestTimeoutMiddleware.registerToApp(app, appConfig.config)
+requestLogMiddleware.registerToApp(app)
+errorHandlingMiddleware.registerToApp(app)
+
+app.get("/",(request, response) => {
+    response.send({
+        "Image-Processing": "/process",
+        "Options": "/options"
+    })
+})
+
+app.get("/process", async (request,response) => {
+    const tmpFile = uniqueTmpFile("proc_")
     const query = requestUtil.parseQuery(request)
-    
+
     let sourceFile;
     try {
         sourceFile = await requestUtil.download(requestUtil.getQueryParameter(query,"source"))
@@ -52,6 +60,11 @@ app.get("/", async (request,response) => {
     }
     
     imageProcessor.stream(response)
+})
+
+app.get("/options",(request, response) => {
+    response.setHeader("Content-Type", "application/json")
+    response.send(options);
 })
 
 app.listen(appConfig.config.port,() => {
