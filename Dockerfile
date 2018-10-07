@@ -1,11 +1,10 @@
-FROM node:8.12-alpine
+FROM node:8.12-slim
 EXPOSE 3000
 RUN mkdir /app
 ADD . /app/
 WORKDIR /app
-RUN apk upgrade --update-cache --available \
-    && apk add graphicsmagick gcc make python2 \
-    && apk add imagemagick \
+RUN apt-get update -y && apt-get upgrade -y \
+    && apt-get install graphicsmagick imagemagick gcc python2.7 -y \
     && npm install --only=production \
     && npm install --only=production -g gm
 CMD ["npm", "run", "server"]
