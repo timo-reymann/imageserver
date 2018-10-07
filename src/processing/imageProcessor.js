@@ -105,7 +105,14 @@ class ImageProcessor {
             return
 
         return nativeUtil.execScript("add_blur.sh",[this.tmpFile])
+    }
+
+    _addBorder() {
+        if(!this.config.borderWidth) 
+            return;
         
+        this.manipulator.borderColor(this.config.borderColor)
+        this.manipulator.border(this.config.borderWidth, this.config.borderWidth)
     }
 
     /**
@@ -116,6 +123,7 @@ class ImageProcessor {
          this._applyEffect()
          this._applyTransparency()
          this._rotate()
+         this._addBorder()
      }
 
      /**

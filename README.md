@@ -14,7 +14,8 @@ Simply create config.json in the project root directory
 
 ```json
 {
-    "port": 3000
+    "port": 3000,
+    "timeout": 10000
 }
 ```
 

@@ -10,5 +10,9 @@ module.exports = {
             console.error("An server error occured",err.stack);
             res.status(500).send('Oh snap! Something went horribly wrong');
         });
+
+        process.on("uncaughtException",(e) => {
+            console.error("RuntimeError",e)
+        })
     }
 } 

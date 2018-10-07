@@ -65,7 +65,20 @@
     },
     {
         "key": "gravity",
+        "parameter": "gravity",
         "default": "center",
         "description": "direction primitive gravitates to when annotating the image ( NorthWest, North, NorthEast, West, Center, East, SouthWest, South, or SouthEast)"
+    },
+    {
+        "key": "borderWidth",
+        "parameter": "border",
+        "default": 0,
+        "description":"Border around the images, width in pixels"
+    },
+    {
+        "key": "borderColor",
+        "parameter": "borderColor",
+        "default": "white",
+        "description": "Border color for image"
     }
 ]
