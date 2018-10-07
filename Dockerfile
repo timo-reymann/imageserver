@@ -6,7 +6,7 @@ WORKDIR /app
 RUN apk upgrade --update-cache --available \
     && apk add graphicsmagick \
     && apk add imagemagick \
-    && npm install \
-    && npm install -g gm
+    && npm install --only=production \
+    && npm install --only=production -g gm
 CMD ["npm", "run", "server"]
 VOLUME ["/app/config.json"]

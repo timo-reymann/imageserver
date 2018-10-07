@@ -15,6 +15,6 @@
     "dev": "node src/app.js",
     "server": "node src/app.js"
   },
-  "author": "",
+  "author": "Timo Reymann <mail@timo-reymann.de>",
   "license": "ISC"
 }
