@@ -1,0 +1,66 @@
+[
+    {
+        "key": "width",
+        "parameter": "w",
+        "default": -1,
+        "description": "Width for resizing image"
+    },
+    {
+        "key": "height",
+        "parameter": "h",
+        "default": -1,
+        "description": "Height for resizing image"
+    },
+    {
+        "key": "resize",
+        "parameter": "resize",
+        "default": "none",
+        "description": "Resize mode for image (crop|resize|none)"
+    },
+    {
+        "key": "backdrop",
+        "parameter": "backdrop",
+        "description": "Backdrop for image"
+    },
+    {
+        "key": "factor",
+        "parameter": "factor",
+        "description": "Factor for resizing images or other scaling tasks",
+        "default": 1
+    },
+    {
+        "key": "radius",
+        "parameter":"radius",
+        "description": "Radius for blur",
+        "default": 1
+    },
+    {
+        "key":"effect",
+        "parameter": "effect",
+        "description": "Effect for image",
+        "default": "none"
+    },
+    {
+        "key": "transparentColor",
+        "parameter": "transparentColor",
+        "description": "Color to replace with transparency",
+        "default": "none"
+    },
+    {
+        "key":"fillColor",
+        "parameter": "fillColor",
+        "description": "Color to fill remaining space for e. g. rotation",
+        "default": "black"
+    },
+    {
+        "key": "rotate",
+        "parameter": "rotate",
+        "default": 0,
+        "description": "Rotate images x degrees"
+    },
+    {
+        "key": "gravity",
+        "default": "center",
+        "description": "direction primitive gravitates to when annotating the image ( NorthWest, North, NorthEast, West, Center, East, SouthWest, South, or SouthEast)"
+    }
+]
