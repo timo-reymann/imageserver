@@ -50,8 +50,9 @@ services:
 - Works only with images avaiable to application without authenticating, may be blocked by specific providers
 
 ## Whats next?
-- Currently working on adding dummy images (just stuipid squares with some text, custom color and dimension)
-- Support for local images?
+- [x] Docker Image
+- [x] Dummy images
+- [ ] Support for local images?
 
 ## Wanna contribute?
 Simply write a ticket or submit a pull request, if you have any problems or questions you can also write me an mail ;)

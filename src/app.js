@@ -2,7 +2,7 @@
 const express = require("express")
 const app = express();
 
-// Utility
+// Utility|App stuff
 const requestUtil = require("./util/request")
 const { ImageProcessor } = require("./processing/imageProcessor")
 const appConfig = require("./util/config")
@@ -10,6 +10,7 @@ const path = require("path")
 const { uuid } = require("./util/uid")
 const { uniqueTmpFile } = require("./util/general")
 const native = require("./util/native")
+const { PlaceholderGenerator } = require("./processing/placeholderGenerator")
 
 // Middleware
 const requestTimeoutMiddleware = require("./middleware/requestTimeout")
@@ -18,31 +19,46 @@ const errorHandlingMiddleware = require("./middleware/errorHandler")
 
 // Initialize configuration
 appConfig.load();
-const options = appConfig.loadOptions()
+const processOptions = appConfig.loadProcessOptions()
+const placeholderOptions = appConfig.loadPlaceholderOptions()
 
 // Register middleware
 requestTimeoutMiddleware.registerToApp(app, appConfig.config)
 requestLogMiddleware.registerToApp(app)
 errorHandlingMiddleware.registerToApp(app)
 
-app.get("/",(request, response) => {
+app.get("/", (request, response) => {
     response.send({
         "Image-Processing": "/process",
-        "Options": "/options"
+        "Options for Image Processing": "/process/options",
+        "Placeholder": "/placeholder/:width/:height",
+        "Options for Placeholder": "/placeholder/options"
     })
 })
 
+app.get("/placeholder/:width/:height", async (request, response) => {
+    const { width, height } = request.params
+    const query = requestUtil.parseQuery(request)
 
-app.get("/process", async (request,response) => {
+    let config = {};
+    placeholderOptions.forEach(o => {
+        config[o.key] = requestUtil.getQueryParameter(query, o.parameter, o.default)
+    })
+
+    const generator = new PlaceholderGenerator(width, height, config)
+    await generator.render(response)
+})
+
+app.get("/process", async (request, response) => {
     const tmpFile = uniqueTmpFile("proc_")
     const query = requestUtil.parseQuery(request)
 
     let sourceFile;
     try {
-        sourceFile = await requestUtil.download(requestUtil.getQueryParameter(query,"source")) 
+        sourceFile = await requestUtil.download(requestUtil.getQueryParameter(query, "source"))
         let contentType = (await native.detectMimeType(sourceFile));
-        response.setHeader("Content-Type",contentType)
-    } catch(e) {
+        response.setHeader("Content-Type", contentType)
+    } catch (e) {
         console.error(e);
         response.send("Invalid url")
         response.status = 400;
@@ -51,8 +67,8 @@ app.get("/process", async (request,response) => {
 
     let config = {};
 
-    // Read all options from url
-    options.forEach(o => {
+    // Read all options for processing from url
+    processOptions.forEach(o => {
         config[o.key] = requestUtil.getQueryParameter(query, o.parameter, o.default)
     })
 
@@ -63,15 +79,20 @@ app.get("/process", async (request,response) => {
     } catch (e) {
         console.error("Error while processing image, returning raw image", e)
     }
-    
+
     imageProcessor.stream(response)
 })
 
-app.get("/options",(request, response) => {
+app.get("/process/options", (request, response) => {
     response.setHeader("Content-Type", "application/json")
-    response.send(options);
+    response.send(processOptions);
 })
 
-app.listen(appConfig.config.port,() => {
+app.get("/placeholder/options", (request, response) => {
+    response.setHeader("Content-Type", "application/json")
+    response.send(placeholderOptions)
+})
+
+app.listen(appConfig.config.port, () => {
     console.log(`Listening on port ${appConfig.config.port}`)
 })

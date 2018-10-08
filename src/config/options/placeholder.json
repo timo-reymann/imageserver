@@ -1,0 +1,20 @@
+[
+    {
+        "key": "backgroundColor",
+        "parameter": "bg",
+        "description": "Background color for image",
+        "default": "white"
+    },
+    {
+        "key": "foregroundColor",
+        "parameter": "fg",
+        "description": "Foreground color for text on dummy image",
+        "default": "black"
+    },
+    {
+        "key": "text",
+        "parameter": "text",
+        "description": "text",
+        "default": "resolution"
+    }
+]

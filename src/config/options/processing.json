@@ -35,12 +35,12 @@
     },
     {
         "key": "radius",
-        "parameter":"radius",
+        "parameter": "radius",
         "description": "Radius for blur",
         "default": 1
     },
     {
-        "key":"effect",
+        "key": "effect",
         "parameter": "effect",
         "description": "Effect for image",
         "default": "none"
@@ -52,7 +52,7 @@
         "default": "none"
     },
     {
-        "key":"fillColor",
+        "key": "fillColor",
         "parameter": "fillColor",
         "description": "Color to fill remaining space for e. g. rotation",
         "default": "black"
@@ -66,14 +66,14 @@
     {
         "key": "gravity",
         "parameter": "gravity",
-        "default": "center",
+        "default": "Center",
         "description": "direction primitive gravitates to when annotating the image ( NorthWest, North, NorthEast, West, Center, East, SouthWest, South, or SouthEast)"
     },
     {
         "key": "borderWidth",
         "parameter": "border",
         "default": 0,
-        "description":"Border around the images, width in pixels"
+        "description": "Border around the images, width in pixels"
     },
     {
         "key": "borderColor",
