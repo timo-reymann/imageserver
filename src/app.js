@@ -4,13 +4,13 @@ const app = express();
 
 // Utility|App stuff
 const requestUtil = require("./util/request")
-const { ImageProcessor } = require("./processing/imageProcessor")
+const {ImageProcessor} = require("./processing/imageProcessor")
 const appConfig = require("./util/config")
 const path = require("path")
-const { uuid } = require("./util/uid")
-const { uniqueTmpFile } = require("./util/general")
+const {uuid} = require("./util/uid")
+const {uniqueTmpFile} = require("./util/general")
 const native = require("./util/native")
-const { PlaceholderGenerator } = require("./processing/placeholderGenerator")
+const {PlaceholderGenerator} = require("./processing/placeholderGenerator")
 
 // Middleware
 const requestTimeoutMiddleware = require("./middleware/requestTimeout")
@@ -37,7 +37,7 @@ app.get("/", (request, response) => {
 })
 
 app.get("/placeholder/:width/:height", async (request, response) => {
-    const { width, height } = request.params
+    const {width, height} = request.params
     const query = requestUtil.parseQuery(request)
 
     let config = {};
@@ -55,12 +55,17 @@ app.get("/process", async (request, response) => {
 
     let sourceFile;
     try {
-        sourceFile = await requestUtil.download(requestUtil.getQueryParameter(query, "source"))
+        const localSource = requestUtil.getQueryParameter(query, "localSource")
+        if (localSource === null) {
+            sourceFile = await requestUtil.download(requestUtil.getQueryParameter(query, "source"))
+        } else {
+            sourceFile = path.join(appConfig.config.localImageFolder, localSource)
+        }
         let contentType = (await native.detectMimeType(sourceFile));
         response.setHeader("Content-Type", contentType)
     } catch (e) {
         console.error(e);
-        response.send("Invalid url")
+        response.send("Invalid source")
         response.status = 400;
         return;
     }

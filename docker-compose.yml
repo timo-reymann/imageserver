@@ -1,0 +1,6 @@
+version: '3.2'
+services:
+  imageserver-local:
+    build: .
+    volumes:
+      - ./localImages:/app/localImages

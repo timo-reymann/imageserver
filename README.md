@@ -5,7 +5,7 @@ imageserver
 An image processing server for easy resizing and modifying images on the fly
 
 ## Requirements
-To run it you need GraphicsMagick and Node 8+ installed
+To run it you need GraphicsMagick, ImageMick, Python 2.7 and Node 8+ installed
 
 ## How to use?
 
@@ -38,6 +38,9 @@ services:
     # please keep in mind that port changes also affects docker port bindings
     volumes: 
       - /opt/imageserver/config.json:/app/config.json
+      # Optional, if you would like to use localImages you can easily mount them into the container,
+      # this can be a network share or whatever
+      - /opt/imageserver/local/app/localImages
 ```
 
 ## Technical details
@@ -52,7 +55,7 @@ services:
 ## Whats next?
 - [x] Docker Image
 - [x] Dummy images
-- [ ] Support for local images?
+- [x] Support for local images?
 
 ## Wanna contribute?
 Simply write a ticket or submit a pull request, if you have any problems or questions you can also write me an mail ;)

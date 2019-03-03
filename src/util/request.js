@@ -35,7 +35,6 @@ module.exports = {
      * @param {String} url 
      */
     async download(url) {
-        // TODO: Test
         return new Promise((resolve, reject) => {
             let fullPath =  uniqueTmpFile("dl_");
             const file = fs.createWriteStream(fullPath);

@@ -1,84 +1,91 @@
 [
-    {
-        "key": "source",
-        "parameter": "source",
-        "description": "Absolute url to source image"
-    },
-    {
-        "key": "width",
-        "parameter": "w",
-        "default": -1,
-        "description": "Width for resizing image"
-    },
-    {
-        "key": "height",
-        "parameter": "h",
-        "default": -1,
-        "description": "Height for resizing image"
-    },
-    {
-        "key": "resize",
-        "parameter": "resize",
-        "default": "none",
-        "description": "Resize mode for image (crop|resize|none)"
-    },
-    {
-        "key": "backdrop",
-        "parameter": "backdrop",
-        "description": "Backdrop for image"
-    },
-    {
-        "key": "factor",
-        "parameter": "factor",
-        "description": "Factor for resizing images or other scaling tasks",
-        "default": 1
-    },
-    {
-        "key": "radius",
-        "parameter": "radius",
-        "description": "Radius for blur",
-        "default": 1
-    },
-    {
-        "key": "effect",
-        "parameter": "effect",
-        "description": "Effect for image",
-        "default": "none"
-    },
-    {
-        "key": "transparentColor",
-        "parameter": "transparentColor",
-        "description": "Color to replace with transparency",
-        "default": "none"
-    },
-    {
-        "key": "fillColor",
-        "parameter": "fillColor",
-        "description": "Color to fill remaining space for e. g. rotation",
-        "default": "black"
-    },
-    {
-        "key": "rotate",
-        "parameter": "rotate",
-        "default": 0,
-        "description": "Rotate images x degrees"
-    },
-    {
-        "key": "gravity",
-        "parameter": "gravity",
-        "default": "Center",
-        "description": "direction primitive gravitates to when annotating the image ( NorthWest, North, NorthEast, West, Center, East, SouthWest, South, or SouthEast)"
-    },
-    {
-        "key": "borderWidth",
-        "parameter": "border",
-        "default": 0,
-        "description": "Border around the images, width in pixels"
-    },
-    {
-        "key": "borderColor",
-        "parameter": "borderColor",
-        "default": "white",
-        "description": "Border color for image"
-    }
+  {
+    "key": "source",
+    "parameter": "source",
+    "description": "Absolute url to source image",
+    "default": null
+  },
+  {
+    "key": "localSource",
+    "parameter": "localSource",
+    "description": "Path to image from localSource root folder",
+    "default": null
+  },
+  {
+    "key": "width",
+    "parameter": "w",
+    "description": "Width for resizing image",
+    "default": -1
+  },
+  {
+    "key": "height",
+    "parameter": "h",
+    "description": "Height for resizing image",
+    "default": -1
+  },
+  {
+    "key": "resize",
+    "parameter": "resize",
+    "description": "Resize mode for image (crop, resize, none)",
+    "default": "none"
+  },
+  {
+    "key": "backdrop",
+    "parameter": "backdrop",
+    "description": "Backdrop for image"
+  },
+  {
+    "key": "factor",
+    "parameter": "factor",
+    "description": "Factor for resizing images or other scaling tasks",
+    "default": 1
+  },
+  {
+    "key": "radius",
+    "parameter": "radius",
+    "description": "Radius for blur",
+    "default": 1
+  },
+  {
+    "key": "effect",
+    "parameter": "effect",
+    "description": "Effect for image (paint, monochrome, mosaic, blur, none)",
+    "default": "none"
+  },
+  {
+    "key": "transparentColor",
+    "parameter": "transparentColor",
+    "description": "Color to replace with transparency",
+    "default": "none"
+  },
+  {
+    "key": "fillColor",
+    "parameter": "fillColor",
+    "description": "Color to fill remaining space for e. g. rotation",
+    "default": "black"
+  },
+  {
+    "key": "rotate",
+    "parameter": "rotate",
+    "description": "Rotate images x degrees",
+    "default": 0
+  },
+  {
+    "key": "gravity",
+    "parameter": "gravity",
+    "description": "Direction primitive gravitates to when annotating the image (NorthWest, North, NorthEast, West, Center, East, SouthWest, South, or SouthEast)",
+    "default": "Center"
+  },
+  {
+    "key": "borderWidth",
+    "parameter": "border",
+    "description": "Border around the images, width in pixels",
+    "default": 0
+  },
+  {
+    "key": "borderColor",
+    "parameter": "borderColor",
+    "description": "Border color for image",
+    "default": "white"
+  }
 ]

@@ -13,7 +13,8 @@ module.exports = {
     get _default() {
         return {
             port: 3000,
-            timeout: 10000
+            timeout: 10000,
+            localImageFolder: 'localImages'
         }
     },
 

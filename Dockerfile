@@ -8,4 +8,4 @@ RUN apt-get update -y && apt-get upgrade -y \
     && npm install --only=production \
     && npm install --only=production -g gm
 CMD ["npm", "run", "server"]
-VOLUME ["/app/config.json"]
+VOLUME ["/app/config.json", "/app/localImages"]
