@@ -40,7 +40,7 @@ services:
       - /opt/imageserver/config.json:/app/config.json
       # Optional, if you would like to use localImages you can easily mount them into the container,
       # this can be a network share or whatever
-      - /opt/imageserver/local/app/localImages
+      - /opt/imageserver/local:/app/localImages
 ```
 
 ## Technical details

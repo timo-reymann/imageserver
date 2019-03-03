@@ -4,3 +4,6 @@ services:
     image: timoreymann/imageserver
     ports:
       - 3000:3000
+    volumes:
+      - ./localImages:/app/localImages/
+      - ./config.json:/app/config.json
