@@ -49,6 +49,7 @@ app.get("/placeholder/:width/:height", async (request, response) => {
     if (!validateDimension(appConfig, width) || !validateDimension(appConfig, height)) {
         response.send("Invalid dimensions")
         response.status = 400
+        return;
     }
 
     const generator = new PlaceholderGenerator(width, height, config)
