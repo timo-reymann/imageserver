@@ -15,7 +15,7 @@ module.exports = {
             port: 3000,
             timeout: 10000,
             localImageFolder: 'localImages',
-			maxDimension: 4000
+			maxDimension: 10000
         }
     },
 
