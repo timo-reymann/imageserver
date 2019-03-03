@@ -21,6 +21,15 @@ You can place a config.json in the project directory to customize the configurat
 }
 ```
 
+The defaults for processing are defined via environment variables, you can find a reference at the graphicmagicks documentation,
+the following are overriden:
+
+```
+MAGICK_LIMIT_DISK=300M -> Maximum file size
+MAGICK_LIMIT_MEMORY=2G -> Memory limit
+```
+
+
 ### Run with node on host/local machine
 ```bash
 npm install

@@ -16,6 +16,8 @@ RUN apt-get update \
         libmagic-dev
 
 ENV PATH=$PATH:~/opt/bin:~/opt/node/bin:/usr/lib/x86_64-linux-gnu/ImageMagick-6.8.9/bin-Q16
+ENV MAGICK_LIMIT_DISK 300M
+ENV MAGICK_LIMIT_MEMORY 2G
 
 # Add app to created folder
 ADD . /app/
