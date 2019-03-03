@@ -1,6 +1,6 @@
 version: '3.2'
 services:
   imageserver-local:
-    build: .
-    volumes:
-      - ./localImages:/app/localImages
+    image: timoreymann/imageserver
+    ports:
+      - 3000:3000
