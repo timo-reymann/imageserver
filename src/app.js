@@ -6,6 +6,7 @@ const app = express();
 const requestUtil = require("./util/request")
 const {ImageProcessor} = require("./processing/imageProcessor")
 const appConfig = require("./util/config")
+const {validateDimension} = require('./util/validation')
 const path = require("path")
 const {uuid} = require("./util/uid")
 const {uniqueTmpFile} = require("./util/general")
@@ -45,6 +46,11 @@ app.get("/placeholder/:width/:height", async (request, response) => {
         config[o.key] = requestUtil.getQueryParameter(query, o.parameter, o.default)
     })
 
+    if (!validateDimension(appConfig, width) || !validateDimension(appConfig, height)) {
+        response.send("Invalid dimensions")
+        response.status = 400
+    }
+
     const generator = new PlaceholderGenerator(width, height, config)
     await generator.render(response)
 })
@@ -66,7 +72,7 @@ app.get("/process", async (request, response) => {
     } catch (e) {
         console.error(e);
         response.send("Invalid source")
-        response.status = 400;
+        response.status = 400
         return;
     }
 

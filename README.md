@@ -15,7 +15,9 @@ You can place a config.json in the project directory to customize the configurat
 ```json
 {
     "port": 3000,
-    "timeout": 10000
+    "timeout": 10000,
+    "localImageFolder": "localImages",
+    "maxDimension": 4000
 }
 ```
 
