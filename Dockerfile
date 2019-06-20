@@ -1,4 +1,4 @@
-FROM node:8.12-slim
+FROM node:lts-jessie
 
 # Expose default port
 EXPOSE 3000
