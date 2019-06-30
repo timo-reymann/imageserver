@@ -21,7 +21,6 @@ ENV MAGICK_LIMIT_MEMORY 2G
 
 WORKDIR /app
 
-
 ADD package.json package.json
 RUN npm install --only=production \
     && npm install --only=production -g gm \
