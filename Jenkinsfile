@@ -1,22 +1,19 @@
 #!groovy
 
 node {
-    properties([
-        parameters([
-             stringParam(name: 'tag', defaultValue: 'latest', description: 'Tag for build'),
-             booleanParam(name: 'release', defaultValue: true, description: 'Also tag as latest')
-        ])
-    ])
-
-    currentBuild.description = params.tag
-
     def imageName = "timoreymann/imageserver"
     def credentials = 'timoreymann-docker'
     def registry = 'https://registry.hub.docker.com'
     def app
+    def tag = increaseMinorVersion(getLastTag())
+
+    currentBuild.description = tag
 
     stage('Checkout') {
         checkout scm
+        checkoutBranch env.BRANCH_NAME
+        configureGitCommiter()
+        configureGitPushUrl("github-timo-reymann")
     }
 
     stage('Build') {
@@ -24,14 +21,11 @@ node {
     }
 
     stage("Publish") {
-        docker.withRegistry(registry, credentials) {
-            if(params.tag != 'latest' || !params.release) {
-                app.push(params.tag)
-            }
+       gitTag(tag)
+       gitPushAll()
 
-            if(params.release) {
-                app.push("latest")
-            }
-        }
+       docker.withRegistry(registry, credentials) {
+         dockerRelease(app, tag)
+       }
     }
 }
