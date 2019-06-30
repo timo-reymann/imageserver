@@ -1,4 +1,4 @@
-FROM node:lts-jessie
+FROM node:lts-jessie-slim
 
 # Expose default port
 EXPOSE 3000
@@ -19,16 +19,17 @@ ENV PATH=$PATH:~/opt/bin:~/opt/node/bin:/usr/lib/x86_64-linux-gnu/ImageMagick-6.
 ENV MAGICK_LIMIT_DISK 300M
 ENV MAGICK_LIMIT_MEMORY 2G
 
-# Add app to created folder
-ADD . /app/
 WORKDIR /app
 
-# Install node dependencies for imageserver
+
+ADD package.json package.json
 RUN npm install --only=production \
     && npm install --only=production -g gm \
     && apt-get remove -y build-essential \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
+
+ADD src/ src/
 
 # Configuration and localImages mount entrypoints
 VOLUME ["/app/config.json", "/app/localImages"]
