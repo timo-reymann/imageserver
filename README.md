@@ -1,6 +1,6 @@
 imageserver
 ===
-[![Build Status](https://jenkins.timo-reymann.de/buildStatus/icon?job=TR-GitHub%2Fimageserver%2Fmaster)](https://jenkins.timo-reymann.de/job/TR-GitHub/job/imageserver/job/master/)
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/timoreymann/imageserver)
 
 ## What is this?
 An image processing server for easy resizing and modifying images on the fly
