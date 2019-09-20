@@ -1,6 +1,6 @@
 imageserver
 ===
-[![GitHub Release](https://img.shields.io/github/v/tag/timo-reymann/composer-dump-autoload-phpstorm-plugin.svg)](https://github.com/timo-reymann/imageserver/releases)
+[![GitHub Release](https://img.shields.io/github/v/tag/timo-reymann/composer-dump-autoload-phpstorm-plugin.svg?label=version)](https://github.com/timo-reymann/imageserver/releases)
 ![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/timoreymann/imageserver)
 
 ## What is this?
