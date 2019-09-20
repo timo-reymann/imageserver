@@ -1,7 +1,7 @@
 imageserver
 ===
 [![GitHub Release](https://img.shields.io/github/v/tag/timo-reymann/composer-dump-autoload-phpstorm-plugin.svg?label=version)](https://github.com/timo-reymann/imageserver/releases)
-![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/timoreymann/imageserver)
+[![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/timoreymann/imageserver)](https://hub.docker.com/r/timoreymann/imageserver/builds)
 
 ## What is this?
 An image processing server for easy resizing and modifying images on the fly
