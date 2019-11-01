@@ -1,4 +1,4 @@
-FROM node:8-jessie-slim
+FROM node:12-buster-slim
 
 # Expose default port
 EXPOSE 3000
